@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using XProject.MVC.Filters;
 using XProject.MVC.Models;
 
 namespace XProject.MVC.Controllers
@@ -19,6 +20,12 @@ namespace XProject.MVC.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [RandomAccessFilter]
+        public IActionResult RandomPage()
         {
             return View();
         }
