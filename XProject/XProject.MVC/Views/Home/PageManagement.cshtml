@@ -1,0 +1,11 @@
+﻿@model PageManagementViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+<h1>@ViewData["Title"]</h1>
+
+<ul>
+@foreach(string item in Model.Pages){
+    <li>@item</li>    
+}
+</ul>

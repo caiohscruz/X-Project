@@ -29,6 +29,11 @@ namespace XProject.MVC.Controllers
         {
             return View();
         }
+        
+        public IActionResult PageManagement()
+        {
+            return View(new PageManagementViewModel());
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
