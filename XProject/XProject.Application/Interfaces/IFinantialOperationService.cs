@@ -1,12 +1,11 @@
-﻿using XProject.Application.DTOs;
+﻿using XProject.Application.ViewModels;
 using XProject.Domain.Entitities;
-using XProject.Domain.Enums;
 
 namespace XProject.Application.Interfaces
 {
     public interface IFinantialOperationService
     {
-        Task<List<FinantialOperation>> GetAll();
-        Task Create(FinantialOperationDTO operation);
+        List<FinantialOperationViewModel> GetAll();
+        Task Create(FinantialOperationViewModel operation);
     }
 }

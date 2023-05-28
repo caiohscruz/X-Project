@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using XProject.Application.Configuration;
 using XProject.Application.Interfaces;
 using XProject.Application.Services;
 using XProject.Domain.Interfaces;
@@ -22,6 +23,9 @@ namespace XProject.Infra.IOC
             services.AddScoped<IAppPageService, AppPageService>();
             services.AddScoped<IFinantialOperationRepository, FinantialOperationRepository>();
             services.AddScoped<IFinantialOperationService, FinantialOperationService>();
+
+            services.AddAutoMapper(typeof(FinantialOperationProfile));
+
 
             return services;
         }

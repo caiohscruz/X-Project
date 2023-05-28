@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XProject.Application.DTOs;
+﻿using AutoMapper;
 using XProject.Application.Interfaces;
+using XProject.Application.ViewModels;
 using XProject.Domain.Entitities;
 using XProject.Domain.Interfaces;
 
@@ -13,21 +9,23 @@ namespace XProject.Application.Services
     public class FinantialOperationService : IFinantialOperationService
     {
         IFinantialOperationRepository _finantialOperationRepository;
+        private readonly IMapper _mapper;
 
-        public FinantialOperationService(IFinantialOperationRepository finantialOperationRepository)
+        public FinantialOperationService(IFinantialOperationRepository finantialOperationRepository, IMapper mapper)
         {
             _finantialOperationRepository = finantialOperationRepository;
+            _mapper = mapper;
         }
 
-        public async Task Create(FinantialOperationDTO operation)
+        public async Task Create(FinantialOperationViewModel operation)
         {
-
-            await _finantialOperationRepository.Create(new FinantialOperation(operation.Name, operation.Value));
+            await _finantialOperationRepository.Create(_mapper.Map<FinantialOperation>(operation));
         }
 
-        public async Task<List<FinantialOperation>> GetAll()
+        public List<FinantialOperationViewModel> GetAll()
         {
-            return await _finantialOperationRepository.GetAll();
+            var operations = _finantialOperationRepository.GetAll();
+            return _mapper.ProjectTo<FinantialOperationViewModel>(operations).ToList();
         }
     }
 }

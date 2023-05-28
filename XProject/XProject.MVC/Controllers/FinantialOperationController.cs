@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using XProject.Application.DTOs;
 using XProject.Application.Interfaces;
+using XProject.Application.ViewModels;
 using XProject.Domain.Entitities;
 using XProject.MVC.Models;
 
@@ -16,20 +17,31 @@ namespace XProject.MVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<FinantialOperation> operations = await _finantialOperationService.GetAll();
-            ViewBag.FinantialOperations = operations.OrderByDescending(o => o.CreatedAt).ToList();
+            ViewBag.FinantialOperations = GetOrderedFinantialOperationList();
 
-            FinantialOperationDTO newOperation = new();
+            FinantialOperationViewModel newOperation = new();
 
             return View(newOperation);
-        }
+        }       
 
         [HttpPost]
-        public async Task<IActionResult> Create(FinantialOperationDTO newOperation)
+        public async Task<IActionResult> Create(FinantialOperationViewModel newOperation)
         {
-            await _finantialOperationService.Create(newOperation);
+            if (ModelState.IsValid)
+            {
+                await _finantialOperationService.Create(newOperation);
 
-            return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.FinantialOperations = GetOrderedFinantialOperationList();
+            return View(nameof(Index), newOperation);
+        }
+
+        private List<FinantialOperationViewModel> GetOrderedFinantialOperationList()
+        {
+            List<FinantialOperationViewModel> operations = _finantialOperationService.GetAll();
+            return operations.OrderByDescending(o => o.CreatedAt).ToList();
         }
     }
 }

@@ -24,9 +24,9 @@ namespace XProject.Infra.Data.Repositories
             return operation;
         }
 
-        public async Task<List<FinantialOperation>> GetAll()
+        public IQueryable<FinantialOperation> GetAll()
         {
-            return await _context.FinantialOperations.ToListAsync();
+            return _context.FinantialOperations;
         }
 
         public async Task<FinantialOperation?> GetById(string id)

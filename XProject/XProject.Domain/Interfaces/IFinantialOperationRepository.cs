@@ -9,7 +9,7 @@ namespace XProject.Domain.Interfaces
 {
     public interface IFinantialOperationRepository
     {
-        public Task<List<FinantialOperation>> GetAll();
+        public IQueryable<FinantialOperation> GetAll();
         public Task<FinantialOperation?> GetById(string id);
         public Task<FinantialOperation> Create(FinantialOperation operation);
         public Task<FinantialOperation> Update(FinantialOperation operation);
