@@ -1,0 +1,27 @@
+﻿@using XProject.Domain.Entitities;
+@model IEnumerable<AppPage>
+
+<h1>Administração de Visibilidade de Páginas</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Visibilidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pagina in Model)
+        {
+            <tr>
+                <td>@pagina.Name</td>
+                <td>
+                    <form asp-controller="AppPage" asp-action="ChangeVisibility" method="post">
+                        <input type="hidden" name="id" value="@pagina.Id" />
+                        <input type="checkbox" @(pagina.IsVisible ? "checked" : "") onchange="this.form.submit()" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
