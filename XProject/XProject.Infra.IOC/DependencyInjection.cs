@@ -5,6 +5,7 @@ using XProject.Application.Interfaces;
 using XProject.Application.Services;
 using XProject.Domain.Interfaces;
 using XProject.Infra.Data;
+using XProject.Infra.Data.Repositories;
 
 namespace XProject.Infra.IOC
 {
@@ -19,6 +20,8 @@ namespace XProject.Infra.IOC
 
             services.AddScoped<IAppPageRepository, ViewRepository>();
             services.AddScoped<IAppPageService, AppPageService>();
+            services.AddScoped<IFinantialOperationRepository, FinantialOperationRepository>();
+            services.AddScoped<IFinantialOperationService, FinantialOperationService>();
 
             return services;
         }

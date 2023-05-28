@@ -2,7 +2,7 @@
 using XProject.Domain.Entitities;
 using XProject.Domain.Interfaces;
 
-namespace XProject.Infra.Data
+namespace XProject.Infra.Data.Repositories
 {
     public class ViewRepository : IAppPageRepository
     {

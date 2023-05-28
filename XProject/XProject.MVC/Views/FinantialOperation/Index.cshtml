@@ -1,0 +1,44 @@
+﻿@using XProject.Application.DTOs
+@model FinantialOperationDTO
+
+<h2>Create Finantial Operation</h2>
+
+<form asp-action="Create" asp-controller="FinantialOperation" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Value"></label>
+        <input asp-for="Value" class="form-control" />
+        <span asp-validation-for="Value" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<h2>List of Finantial Operations</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var operation in ViewBag.FinantialOperations)
+        {
+            <tr>
+                <td>@operation.Id</td>
+                <td>@operation.Name</td>
+                <td>@operation.Value</td>
+                <td>@operation.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>

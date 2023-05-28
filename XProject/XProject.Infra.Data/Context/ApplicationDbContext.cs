@@ -11,6 +11,7 @@ namespace XProject.Infra.Data
         }
 
         public DbSet<AppPage> Views { get; set; }
+        public DbSet<FinantialOperation> FinantialOperations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
